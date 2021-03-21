@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //init View
-        btnLoadCards = findViewById(R.id.btn_load);
+        //btnLoadCards = findViewById(R.id.btn_load);
         context = getApplicationContext();
         list = findViewById(R.id.rv_list);
 
@@ -43,24 +43,21 @@ public class MainActivity extends AppCompatActivity {
         loadWebResult();
 
 
-        btnLoadCards.setOnClickListener(new View.OnClickListener() {
+/*        btnLoadCards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //btnLoadCards.setEnabled(false);
                 //setAndRestoreButtons();
+            }
+        });*/
 
-
-                //click on Magic Card
-                mAdapter.setOnLIstItemClickListener(new ListAdapter.ListItemClickListener() {
-                    @Override
-                    public void onLIstItemClick(MagicCard mc) {
-                        Toast.makeText(MainActivity.this, mc.getName(), Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(MainActivity.this, DetailActivity.class);
-                        i.putExtra(DetailActivity.KEY_MAGIC_CARD_TEXT, mc);
-                        startActivity(i);
-                    }
-                });
+        mAdapter.setOnLIstItemClickListener(new ListAdapter.ListItemClickListener() {
+            @Override
+            public void onLIstItemClick(MagicCard mc) {
+                Toast.makeText(MainActivity.this, mc.getName(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, DetailActivity.class);
+                i.putExtra(DetailActivity.KEY_MAGIC_CARD_TEXT, mc);
+                startActivity(i);
             }
         });
 
