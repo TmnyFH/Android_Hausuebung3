@@ -8,19 +8,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_listItem_name"
         android:textSize="21dp"
         android:padding="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_type"
+        android:id="@+id/tv_listItem_rarity"
         android:textSize="21dp"
         android:padding="8dp"/>
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></Button>
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_listItem_showDetails" />
 
 </LinearLayout>

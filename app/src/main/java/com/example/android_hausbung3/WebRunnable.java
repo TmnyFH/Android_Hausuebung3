@@ -13,17 +13,25 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-class WebRunnable implements Runnable {
+interface IMyCallback {
+    public void runCallback(ArrayList<MagicCard> magicCard);
+}
+
+public class WebRunnable implements Runnable {
     int cardNr = 0;
     int page = 0;
+    private IMyCallback iMyCallback;
+    ArrayList<MagicCard> magicCardList = new ArrayList<MagicCard>();
 
     URL url;
 
-    WebRunnable(String url) {
+    WebRunnable(String url, IMyCallback iMyCallback ) {
         try {
             this.url = new URL(url);
+            this.iMyCallback = iMyCallback;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -52,11 +60,13 @@ class WebRunnable implements Runnable {
                     cardNr++;
                     JSONObject card = cards.getJSONObject(i);
                     MagicCard mc = new MagicCard(card,cardNr);
-                    out += mc.getMessageData();
-                }
 
+                    magicCardList.add(mc);
+                }
+                iMyCallback.runCallback(magicCardList);
                 Log.d("JSON Obj", root.toString());
 
+/*
                 String finalOut = out + "\n\n\n Page" + page;
                 mainHandler.post(new Runnable() {
                     @Override
@@ -64,6 +74,7 @@ class WebRunnable implements Runnable {
                         //TO-DO fill views
                     }
                 });
+*/
 
 
             }
